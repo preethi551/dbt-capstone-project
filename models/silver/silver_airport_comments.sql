@@ -12,7 +12,7 @@ with comments as (
 select 
 comment_id,
 airport_ident,
-  nvl(member_nickname,'__UNKNOWN__'),
+  nvl(member_nickname,'__UNKNOWN__') as member_nickname ,
   comment_subject,
   comment_body,
   current_timestamp() as loaded_at  
@@ -21,6 +21,6 @@ airport_ident,
 
   {% if is_incremental() %}
     -- this filter will only be applied on an incremental run
-    where comment_id > (select max(comment_id) from {{ this }}) 
+    and  comment_id > (select max(comment_id) from {{ this }}) 
   {% endif %}
   
