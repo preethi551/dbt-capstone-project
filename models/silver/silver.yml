@@ -1,0 +1,22 @@
+models:
+  - name: silver_airport_comments
+    columns:
+      - name: COMMENT_ID
+        data_tests:
+          - unique
+          - not_null
+
+  - name: silver_airports
+    columns:
+      - name: AIRPORT_IDENT
+        data_tests:
+          - unique
+          - not_null
+
+  - name: silver_runways
+    columns:
+      - name: RUNWAY_ID
+        data_tests:
+          - unique
+          - not_null
+      

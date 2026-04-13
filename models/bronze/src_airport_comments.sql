@@ -1,3 +1,9 @@
+
+{{
+    config(
+        materialized='ephemeral'
+    )
+}}
 with airport_comments as(
     select * from {{ source('comments', 'airport_comments') }}
 )

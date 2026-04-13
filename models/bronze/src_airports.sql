@@ -1,3 +1,8 @@
+{{
+    config(
+        materialized='ephemeral'
+    )
+}}
 with  airports as (
     select * from {{ source('comments', 'airports') }}
     )
