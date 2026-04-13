@@ -1,3 +1,8 @@
+{{
+    config(
+        materialized='ephemeral'
+    )
+}}
 with runways as(
     select * from {{ source('comments', 'runways') }}
 )
