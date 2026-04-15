@@ -5,6 +5,19 @@ models:
         data_tests:
           - unique
           - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments: 
+               column_type: number
+          
+      - name: AIRPORT_IDENT
+        data_tests:
+         - relationships:
+             arguments:
+               to: ref('silver_airports')
+               field: AIRPORT_IDENT
+             config:
+               severity: warn
+
 
   - name: silver_airports
     columns:
@@ -12,11 +25,34 @@ models:
         data_tests:
           - unique
           - not_null
-
+      - name: airport_type
+        data_tests:
+          - accepted_values:
+              arguments:
+               values: ['heliport',
+                         'small_airport',
+                          'seaplane_base',
+                          'closed',
+                          'medium_airport',
+                          'balloonport',
+                          'large_airport']
+    
   - name: silver_runways
     columns:
       - name: RUNWAY_ID
         data_tests:
           - unique
           - not_null
-      
+      - name: AIRPORT_IDENT
+        data_tests: 
+          - relationships: 
+              arguments: 
+                to: ref('silver_airports')
+                field: AIRPORT_IDENT
+              config:
+                severity: warn
+
+
+
+
+
