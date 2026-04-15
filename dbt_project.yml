@@ -39,6 +39,9 @@ models:
   capstone:
     silver:
       +materialized: table
+  data_tests:
+    +store_failures: true
+    +schema: _test_failures
 
     # Applies to all files under models/example/
 
